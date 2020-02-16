@@ -89,6 +89,7 @@ enum combos {
   HJ, NM,
   JK, KL, COMMA_PERIOD,
   F7_F8, F8_F9, F12_F13,
+  NUM23, NUM34, NUM78, NUM89,
   BSPACE_SHIFT
 };
 
@@ -110,6 +111,10 @@ const uint16_t PROGMEM comma_period_combo[] = {KC_COMMA, KC_DOT, COMBO_END};
 const uint16_t PROGMEM f7_f8_combo[] = {KC_F7, KC_F8, COMBO_END};
 const uint16_t PROGMEM f8_f9_combo[] = {KC_F8, KC_F9, COMBO_END};
 const uint16_t PROGMEM f12_f13_combo[] = {KC_F12, KC_F13, COMBO_END};
+const uint16_t PROGMEM num_23_combo[] = {KC_2, KC_3, COMBO_END};
+const uint16_t PROGMEM num_34_combo[] = {KC_3, KC_4, COMBO_END};
+const uint16_t PROGMEM num_78_combo[] = {KC_7, KC_8, COMBO_END};
+const uint16_t PROGMEM num_89_combo[] = {KC_8, KC_9, COMBO_END};
 const uint16_t PROGMEM bspace_shift_combo[] = {KC_BSPACE, KC_RSHIFT, COMBO_END};
 
 
@@ -132,12 +137,16 @@ combo_t key_combos[COMBO_COUNT] = {
   [F7_F8] = COMBO(f7_f8_combo, KC_LCTRL),
   [F8_F9] = COMBO_ACTION(f8_f9_combo),
   [F12_F13] = COMBO(f12_f13_combo, KC_LSHIFT),
+  [NUM23] = COMBO(num_23_combo, KC_LCTRL),
+  [NUM34] = COMBO_ACTION(num_34_combo),
+  [NUM78] = COMBO_ACTION(num_78_combo),
+  [NUM89] = COMBO(num_23_combo, KC_LCTRL),
   [BSPACE_SHIFT] = COMBO(bspace_shift_combo, KC_RALT)
 };
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
   switch(combo_index) {
-    case DF: case JK: case F8_F9:
+    case DF: case JK: case F8_F9: case NUM34: case NUM78:
       if (pressed) {
         register_code16(KC_LCTRL);
         register_code16(KC_LSHIFT);
@@ -214,7 +223,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_EXLM,        KC_AT,          KC_HASH,        KC_DLR,         KC_PERC,                  KC_CIRC,        KC_AMPR,        KC_ASTR,        KC_LPRN,        KC_RPRN,
     KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                     KC_6,           KC_7,           KC_8,           KC_9,           KC_0,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,           KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-                                    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,           KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
+                                    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,           KC_DEL, KC_TRANSPARENT, KC_TRANSPARENT
     ),
 [2] = LAYOUT_gergoplex(
     KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                    KC_GRAVE,       KC_LBRACKET,    KC_RBRACKET,    KC_LCBR,        KC_RCBR,
