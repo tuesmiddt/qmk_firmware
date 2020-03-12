@@ -3,3 +3,5 @@
 #define COMBO_COUNT 23
 #define COMBO_TERM 25
 #define COMBO_ALLOW_ACTION_KEYS
+#undef DEBOUNCE
+#define DEBOUNCE    10
